@@ -15,7 +15,11 @@ describe "Heroku's Java CNB" do
           body: body
         ).call
 
-        expect(container.logs.stdout).to include("logging info 1")
+        expect(container.logs.stdout).to include("This tests logging with INFO")
+        expect(container.logs.stdout).to include("This tests logging with WARN")
+        expect(container.logs.stdout).to include("This tests logging with ERROR")
+        expect(container.logs.stdout).to include("This tests logging with DEBUG")
+        expect(container.logs.stdout).to include("This tests logging with TRACE")
 
         expect(query.as_json).to eq(body.reverse)
         expect(query.success?).to be_truthy
