@@ -4,6 +4,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.25] 2022/01/05
+* Upgraded `heroku/jvm-function-invoker` to `0.6.0`
+* Switch to BSD 3-Clause License
+
+## [0.3.24] 2021/10/28
+* Upgraded `heroku/jvm` to `0.1.11`
+* Upgraded `heroku/jvm` to `0.1.10`
+
+## [0.3.23] 2021/10/19
+* Upgraded `heroku/jvm-function-invoker` to `0.5.5`
+* Upgraded `heroku/jvm` to `0.1.9`
+
+
+## [0.3.22] 2021/09/30
+* Upgraded `heroku/jvm-function-invoker` to `0.5.4`
+
+## [0.3.21] 2021/09/29
+
 ## [0.3.20] 2021/09/29
 * Upgraded `heroku/jvm-function-invoker` to `0.5.3`
 

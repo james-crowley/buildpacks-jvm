@@ -15,10 +15,10 @@ jobs:
     steps:
       - id: checkout
         name: "Checkout code"
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2.4.0
       - id: setup-pack
         name: "Setup pack"
-        uses: buildpacks/github-actions/setup-pack@v4.3.1
+        uses: buildpacks/github-actions/setup-pack@v4.5.0
       - id: login
         name: "Login to public ECR"
         uses: docker/login-action@v1
@@ -36,11 +36,11 @@ jobs:
         with:
           toolchain: stable
           target: "x86_64-unknown-linux-musl"
-      - id: install-cargo-make
-        name: "Install cargo-make"
+      - id: install-libcnb-cargo
+        name: "Install libcnb-cargo"
         uses: actions-rs/install@v0.1
         with:
-          crate: cargo-make
+          crate: libcnb-cargo
           version: latest
       - id: package
         name: "Package buildpack and publish to container registry"
@@ -67,6 +67,14 @@ jobs:
             Docker: `docker pull ${{ steps.package.outputs.address }}`
           draft: false
           prerelease: false
+      - id: upload_release_package
+        name: Upload buildpackage to release
+        uses: svenstaro/upload-release-action@2.2.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ steps.package.outputs.cnb_package_file_path }}
+          tag: ${{ steps.package.outputs.id }}_${{ steps.package.outputs.version }}
+          overwrite: true
       - id: prepare-pr
         name: "Prepare PR with version bumps and CHANGELOG updates"
         run: ./.github/scripts/release-workflow-prepare-pr.sh "${{ steps.package.outputs.id }}" "${{ steps.package.outputs.version }}" "docker://${{ steps.package.outputs.address }}"

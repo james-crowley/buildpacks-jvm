@@ -8,8 +8,8 @@ homepage = "https://github.com/heroku/heroku-buildpack-clojure"
 description = "Official Heroku buildpack for Clojure applications. It uses Leiningen for building."
 keywords = ["clojure", "leiningen"]
 
-[[licenses]]
-type = "MIT"
+[[buildpack.licenses]]
+type = "BSD-3-Clause"
 
 [[stacks]]
 id = "heroku-18"
